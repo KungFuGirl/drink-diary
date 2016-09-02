@@ -17,7 +17,7 @@ RSpec.describe WineType, type: :model do
       end
     end
 
-    xdescribe '#name' do
+    describe '#name' do
       it { should validate_presence_of(:name) }
     end
   end
