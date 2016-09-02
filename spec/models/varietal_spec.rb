@@ -26,9 +26,6 @@ RSpec.describe Varietal, type: :model do
       it { should validate_presence_of(:name) }
     end
 
-    describe '#is_black' do
-      it { should validate_presence_of(:is_black) }
-    end
   end
 
   describe 'associations' do
