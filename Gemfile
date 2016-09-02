@@ -20,7 +20,7 @@ gem 'puma', '~> 3.0'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 group :test do
-  gem 'shoulda-matchers', require: false
+  gem 'shoulda-matchers'
 end
 
 group :development, :test do

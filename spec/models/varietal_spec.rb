@@ -22,17 +22,17 @@ RSpec.describe Varietal, type: :model do
       end
     end
 
-    xdescribe '#name' do
+    describe '#name' do
       it { should validate_presence_of(:name) }
     end
 
-    xdescribe '#is_black' do
+    describe '#is_black' do
       it { should validate_presence_of(:is_black) }
     end
   end
 
   describe 'associations' do
-    it { Varietal.reflect_on_association(:blend).macro.should  eq(:has_many) }
+    it { Varietal.reflect_on_association(:blends).macro.should  eq(:has_and_belongs_to_many) }
   end
   
 end

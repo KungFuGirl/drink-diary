@@ -1,4 +1,4 @@
 class Blend < ApplicationRecord
   validates_presence_of :name
-  has_many :varietal
+  has_and_belongs_to_many :varietals
 end

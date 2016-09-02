@@ -18,13 +18,13 @@ RSpec.describe Blend, type: :model do
       end
     end
 
-    xdescribe '#name' do
+    describe '#name' do
       it { should validate_presence_of(:name) }
     end
   end
 
   describe 'associations' do
-    it { Blend.reflect_on_association(:varietal).macro.should  eq(:has_many) }
+    it { Blend.reflect_on_association(:varietals).macro.should  eq(:has_and_belongs_to_many) }
   end
 
 end
