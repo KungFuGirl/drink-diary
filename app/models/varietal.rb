@@ -4,4 +4,5 @@ class Varietal < ApplicationRecord
   has_and_belongs_to_many :blends
   has_and_belongs_to_many :countries
   has_and_belongs_to_many :wine_regions
+  has_and_belongs_to_many :appellations
 end
