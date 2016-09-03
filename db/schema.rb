@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160903062814) do
+ActiveRecord::Schema.define(version: 20160903201223) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,11 @@ ActiveRecord::Schema.define(version: 20160903062814) do
     t.datetime "updated_at",     null: false
     t.index ["state_id"], name: "index_appellations_on_state_id", using: :btree
     t.index ["wine_region_id"], name: "index_appellations_on_wine_region_id", using: :btree
+  end
+
+  create_table "appellations_varietals", id: false, force: :cascade do |t|
+    t.integer "appellation_id"
+    t.integer "varietal_id"
   end
 
   create_table "blends", force: :cascade do |t|
@@ -55,6 +60,14 @@ ActiveRecord::Schema.define(version: 20160903062814) do
     t.index ["country_id"], name: "index_states_on_country_id", using: :btree
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.string   "email",      null: false
+    t.string   "password",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "varietals", force: :cascade do |t|
     t.string   "name",       null: false
     t.boolean  "is_black",   null: false
@@ -83,9 +96,32 @@ ActiveRecord::Schema.define(version: 20160903062814) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "wines", force: :cascade do |t|
+    t.string   "name",                null: false
+    t.string   "producer"
+    t.integer  "review_for_photo_id"
+    t.integer  "country_id"
+    t.integer  "wine_type_id"
+    t.integer  "wine_region_id"
+    t.integer  "state_id"
+    t.integer  "appellation_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.index ["appellation_id"], name: "index_wines_on_appellation_id", using: :btree
+    t.index ["country_id"], name: "index_wines_on_country_id", using: :btree
+    t.index ["state_id"], name: "index_wines_on_state_id", using: :btree
+    t.index ["wine_region_id"], name: "index_wines_on_wine_region_id", using: :btree
+    t.index ["wine_type_id"], name: "index_wines_on_wine_type_id", using: :btree
+  end
+
   add_foreign_key "appellations", "states"
   add_foreign_key "appellations", "wine_regions"
   add_foreign_key "states", "countries"
   add_foreign_key "wine_regions", "countries"
   add_foreign_key "wine_regions", "states"
+  add_foreign_key "wines", "appellations"
+  add_foreign_key "wines", "countries"
+  add_foreign_key "wines", "states"
+  add_foreign_key "wines", "wine_regions"
+  add_foreign_key "wines", "wine_types"
 end
