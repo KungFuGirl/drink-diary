@@ -5,3 +5,93 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+countries_data = [
+  { name: "USA" },
+  { name: "France" },
+  { name: "Italy" }
+  ]
+
+countries_data.each do |country_data|
+  Country.find_or_create_by(country_data)
+end
+
+usa = Country.find_by(name: "USA")
+
+usa_states_data = [
+  { name: "Alabama", country_id: usa.id },
+  { name: "Alaska", country_id: usa.id },
+  { name: "Arizona", country_id: usa.id },
+  { name: "Arkansas", country_id: usa.id },
+  { name: "California", country_id: usa.id },
+  { name: "Colorado", country_id: usa.id },
+  { name: "Connecticut", country_id: usa.id },
+  { name: "DC", country_id: usa.id },
+  { name: "Delaware", country_id: usa.id },
+  { name: "Florida", country_id: usa.id },
+  { name: "Georgia", country_id: usa.id },
+  { name: "Hawaii", country_id: usa.id },
+  { name: "Idaho", country_id: usa.id },
+  { name: "Illinois", country_id: usa.id },
+  { name: "Indiana", country_id: usa.id },
+  { name: "Iowa", country_id: usa.id },
+  { name: "Kansas", country_id: usa.id },
+  { name: "Kentucky", country_id: usa.id },
+  { name: "Louisiana", country_id: usa.id },
+  { name: "Maine", country_id: usa.id },
+  { name: "Maryland", country_id: usa.id },
+  { name: "Massachusetts", country_id: usa.id },
+  { name: "Michigan", country_id: usa.id },
+  { name: "Minnesota", country_id: usa.id },
+  { name: "Mississippi", country_id: usa.id },
+  { name: "Missouri", country_id: usa.id },
+  { name: "Montana", country_id: usa.id },
+  { name: "Nebraska", country_id: usa.id },
+  { name: "Nevada", country_id: usa.id },
+  { name: "New Hampshire", country_id: usa.id },
+  { name: "New Jersey", country_id: usa.id },
+  { name: "New Mexico", country_id: usa.id },
+  { name: "New York", country_id: usa.id },
+  { name: "North Carolina", country_id: usa.id },
+  { name: "North Dakota", country_id: usa.id },
+  { name: "Ohio", country_id: usa.id },
+  { name: "Oklahoma", country_id: usa.id },
+  { name: "Oregon", country_id: usa.id },
+  { name: "Pennsylvania", country_id: usa.id },
+  { name: "Rhode Island", country_id: usa.id },
+  { name: "South Carolina", country_id: usa.id },
+  { name: "South Dakota", country_id: usa.id },
+  { name: "Tennessee", country_id: usa.id },
+  { name: "Texas", country_id: usa.id },
+  { name: "Utah", country_id: usa.id },
+  { name: "Vermont", country_id: usa.id },
+  { name: "Virginia", country_id: usa.id },
+  { name: "Washington", country_id: usa.id },
+  { name: "West Virginia", country_id: usa.id },
+  { name: "Wisconsin", country_id: usa.id },
+  { name: "Wyoming", country_id: usa.id }
+  ]
+  
+usa_states_data.each do |state_data|
+  State.find_or_create_by(state_data)
+end
+
+wine_types_data = [
+  { name: "Red wine" },
+  { name: "White wine" },
+  { name: "Rose wine" },
+  { name: "Sparkling red wine" },
+  { name: "Sparkling white wine" },
+  { name: "Sparkling rose wine" },
+  { name: "Fortified wine" },
+  { name: "Dessert wine" }
+]
+
+wine_types_data.each do |type_data|
+  WineType.find_or_create_by(type_data)
+end
+
+
+
+
+
