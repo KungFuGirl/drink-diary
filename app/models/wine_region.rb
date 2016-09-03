@@ -3,5 +3,5 @@ class WineRegion < ApplicationRecord
   belongs_to :country
   belongs_to :state
   # had_many :appellations
-  # has_and_belongs_to_many :varietals
+  has_and_belongs_to_many :varietals
 end

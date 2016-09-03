@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160903030745) do
+ActiveRecord::Schema.define(version: 20160903063558) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "appellations", force: :cascade do |t|
+    t.string   "name",           null: false
+    t.integer  "wine_region_id"
+    t.integer  "state_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["state_id"], name: "index_appellations_on_state_id", using: :btree
+    t.index ["wine_region_id"], name: "index_appellations_on_wine_region_id", using: :btree
+  end
 
   create_table "blends", force: :cascade do |t|
     t.string   "name",       null: false
@@ -32,6 +42,11 @@ ActiveRecord::Schema.define(version: 20160903030745) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "countries_varietals", id: false, force: :cascade do |t|
+    t.integer "country_id"
+    t.integer "varietal_id"
+  end
+
   create_table "states", force: :cascade do |t|
     t.string   "name",       null: false
     t.integer  "country_id"
@@ -45,6 +60,11 @@ ActiveRecord::Schema.define(version: 20160903030745) do
     t.boolean  "is_black",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "varietals_wine_regions", id: false, force: :cascade do |t|
+    t.integer "varietal_id"
+    t.integer "wine_region_id"
   end
 
   create_table "wine_regions", force: :cascade do |t|
@@ -63,6 +83,8 @@ ActiveRecord::Schema.define(version: 20160903030745) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "appellations", "states"
+  add_foreign_key "appellations", "wine_regions"
   add_foreign_key "states", "countries"
   add_foreign_key "wine_regions", "countries"
   add_foreign_key "wine_regions", "states"
