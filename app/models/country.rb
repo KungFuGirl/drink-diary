@@ -3,5 +3,5 @@ class Country < ApplicationRecord
   # has_many :wines
   # has_many :wine_regions
   # has_many :states
-  # has_and_belongs_to :varietals
+  has_and_belongs_to_many :varietals
 end
