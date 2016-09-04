@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160903223034) do
+ActiveRecord::Schema.define(version: 20160904195539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,9 +41,19 @@ ActiveRecord::Schema.define(version: 20160903223034) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "blends_countries", id: false, force: :cascade do |t|
+    t.integer "blend_id"
+    t.integer "country_id"
+  end
+
   create_table "blends_varietals", id: false, force: :cascade do |t|
     t.integer "blend_id"
     t.integer "varietal_id"
+  end
+
+  create_table "blends_wine_regions", id: false, force: :cascade do |t|
+    t.integer "blend_id"
+    t.integer "wine_region_id"
   end
 
   create_table "countries", force: :cascade do |t|
@@ -130,9 +140,13 @@ ActiveRecord::Schema.define(version: 20160903223034) do
     t.integer  "appellation_id"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.integer  "blend_id"
+    t.integer  "varietal_id"
     t.index ["appellation_id"], name: "index_wines_on_appellation_id", using: :btree
+    t.index ["blend_id"], name: "index_wines_on_blend_id", using: :btree
     t.index ["country_id"], name: "index_wines_on_country_id", using: :btree
     t.index ["state_id"], name: "index_wines_on_state_id", using: :btree
+    t.index ["varietal_id"], name: "index_wines_on_varietal_id", using: :btree
     t.index ["wine_region_id"], name: "index_wines_on_wine_region_id", using: :btree
     t.index ["wine_type_id"], name: "index_wines_on_wine_type_id", using: :btree
   end
@@ -145,8 +159,10 @@ ActiveRecord::Schema.define(version: 20160903223034) do
   add_foreign_key "wine_regions", "countries"
   add_foreign_key "wine_regions", "states"
   add_foreign_key "wines", "appellations"
+  add_foreign_key "wines", "blends"
   add_foreign_key "wines", "countries"
   add_foreign_key "wines", "states"
+  add_foreign_key "wines", "varietals"
   add_foreign_key "wines", "wine_regions"
   add_foreign_key "wines", "wine_types"
 end
