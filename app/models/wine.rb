@@ -14,7 +14,7 @@ class Wine < ApplicationRecord
 
   def blend_or_varietal_present_not_both
     if blend.present? && varietal.present?
-      errors.add(:blend_or_varietal, "Wine can not have blend and varietal set. Only one, not both.")
+      errors.add(:blend_or_varietal, "Wine has either blend or varietal set")
     end
   end
 
