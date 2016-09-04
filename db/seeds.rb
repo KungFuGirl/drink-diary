@@ -17,6 +17,8 @@ countries_data.each do |country_data|
 end
 
 usa = Country.find_by(name: "USA")
+france = Country.find_by(name: "France")
+italy = Country.find_by(name: "Italy")
 
 usa_states_data = [
   { name: "Alabama", country_id: usa.id },
@@ -91,15 +93,17 @@ wine_types_data.each do |type_data|
   WineType.find_or_create_by(type_data)
 end
 
-italy = Country.find_by(name: "Italy")
 red_wine = WineType.find_by(name: 'Red wine')
 tuscany = WineRegion.find_or_create_by( name: 'Tuscany', country_id: italy.id)
 chianti_blend = Blend.find_or_create_by( name: 'Chianti' )
 chianti_blend.varietals << [ Varietal.find_or_create_by( name: 'Sangiovese', is_black: true ), Varietal.find_or_create_by( name: 'Canaiolo', is_black: true ), Varietal.find_or_create_by( name: 'Cabernet Sauvignon', is_black: true ), Varietal.find_or_create_by( name: 'Merlot', is_black: true ), Varietal.find_or_create_by( name: 'Syrah', is_black: true ) ]
 chianti_appellation = Appellation.find_or_create_by( name: 'Chianti Classico', wine_region_id: tuscany.id)
+brunello_di_montalcino_appellation = Appellation.find_or_create_by( name: 'Brunello di Montalcino', wine_region_id: tuscany.id)
 chianti_appellation.blends << chianti_blend
-
+brunello_di_montalcino_appellation.varietals << Varietal.find_or_create_by( name: 'Sangiovese', is_black: true )
 
 Wine.create( name: 'Ruffino Riserva Ducale', country_id: italy.id, wine_type_id: red_wine.id, wine_region: tuscany, appellation: chianti_appellation )
+
+Wine.create( name: 'Argiano Brunello di Montalcino', country_id: italy.id, wine_type_id: red_wine.id, wine_region: tuscany, appellation: brunello_di_montalcino_appellation )
 
 
