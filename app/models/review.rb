@@ -1,6 +1,7 @@
 class Review < ApplicationRecord
   belongs_to :wine
   belongs_to :user
+
   has_attached_file :photo
 
   validates_presence_of :date, :rating
