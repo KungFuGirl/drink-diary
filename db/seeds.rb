@@ -5,6 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+#
+#*********************
+#   when creating record, please use find_or_create_by! or create! so that validations will fail!
+#*********************
 
 countries_data = [
   { name: "USA" },
@@ -14,7 +18,7 @@ countries_data = [
   ]
 
 countries_data.each do |country_data|
-  Country.find_or_create_by(country_data)
+  Country.find_or_create_by!(country_data)
 end
 
 usa = Country.find_by( name: "USA" )
@@ -32,7 +36,7 @@ australian_states_data = [
 ]
 
 australian_states_data.each do |state_data|
-  State.find_or_create_by(state_data)
+  State.find_or_create_by!(state_data)
 end
 
 usa_states_data = [
@@ -90,7 +94,7 @@ usa_states_data = [
   ]
   
 usa_states_data.each do |state_data|
-  State.find_or_create_by(state_data)
+  State.find_or_create_by!(state_data)
 end
 
 wine_types_data = [
@@ -105,45 +109,45 @@ wine_types_data = [
 ]
 
 wine_types_data.each do |type_data|
-  WineType.find_or_create_by( type_data )
+  WineType.find_or_create_by!( type_data )
 end
 
 red_wine = WineType.find_by( name: 'Red wine' )
 white_wine = WineType.find_by( name: 'White wine' )
 sparkling_rose = WineType.find_by( name: 'Sparkling rose wine' )
 
-tuscany = WineRegion.find_or_create_by( name: 'Tuscany', country_id: italy.id )
-bordeaux = WineRegion.find_or_create_by( name: 'Bordeaux', country_id: france.id )
-champagne = WineRegion.find_or_create_by( name: 'Champagne', country_id: france.id )
-north_east_victoria = WineRegion.find_or_create_by( name: 'North East Victoria' )
+tuscany = WineRegion.find_or_create_by!( name: 'Tuscany', country_id: italy.id )
+bordeaux = WineRegion.find_or_create_by!( name: 'Bordeaux', country_id: france.id )
+champagne = WineRegion.find_or_create_by!( name: 'Champagne', country_id: france.id )
+north_east_victoria = WineRegion.find_or_create_by!( name: 'North East Victoria' )
 
-washington = State.find_or_create_by( name: 'Washington')
-victoria = State.find_or_create_by( name: 'Victoria' )
+washington = State.find_or_create_by!( name: 'Washington')
+victoria = State.find_or_create_by!( name: 'Victoria' )
 
-cabernet_sauvignon = Varietal.find_or_create_by( name: 'Cabernet Sauvignon', is_black: true )
-canaiolo = Varietal.find_or_create_by( name: 'Canaiolo', is_black: true )
-chardonnay = Varietal.find_or_create_by( name: 'Chardonnay', is_black: false )
-merlot = Varietal.find_or_create_by( name: 'Merlot', is_black: true )
-riesling = Varietal.find_or_create_by( name: 'Riesling', is_black: false )
-sangiovese = Varietal.find_or_create_by( name: 'Sangiovese', is_black: true )
-syrah = Varietal.find_or_create_by( name: 'Syrah', is_black: true )
+cabernet_sauvignon = Varietal.find_or_create_by!( name: 'Cabernet Sauvignon', is_black: true )
+canaiolo = Varietal.find_or_create_by!( name: 'Canaiolo', is_black: true )
+chardonnay = Varietal.find_or_create_by!( name: 'Chardonnay', is_black: false )
+merlot = Varietal.find_or_create_by!( name: 'Merlot', is_black: true )
+riesling = Varietal.find_or_create_by!( name: 'Riesling', is_black: false )
+sangiovese = Varietal.find_or_create_by!( name: 'Sangiovese', is_black: true )
+syrah = Varietal.find_or_create_by!( name: 'Syrah', is_black: true )
 
-chianti_blend = Blend.find_or_create_by( name: 'Chianti' )
+chianti_blend = Blend.find_or_create_by!( name: 'Chianti' )
 chianti_blend.varietals << [  sangiovese, canaiolo, cabernet_sauvignon, merlot, syrah ]
 
-chianti_appellation = Appellation.find_or_create_by( name: 'Chianti Classico', wine_region_id: tuscany.id )
-bcdf_appellation = Appellation.find_or_create_by( name: 'Bordeaux Côtes de Francs', wine_region_id: bordeaux.id )
-brunello_di_montalcino_appellation = Appellation.find_or_create_by( name: 'Brunello di Montalcino', wine_region_id: tuscany.id )
-ancient_lakes_appellation = Appellation.find_or_create_by( name: 'Ancient Lakes', state_id: washington.id )
-champagne_appellation = Appellation.find_or_create_by( name: 'Champagne', wine_region_id: champagne.id )
-beechworth_appellation = Appellation.find_or_create_by( name: 'Beechworth', wine_region_id: north_east_victoria.id )
+chianti_appellation = Appellation.find_or_create_by!( name: 'Chianti Classico', wine_region_id: tuscany.id )
+bcdf_appellation = Appellation.find_or_create_by!( name: 'Bordeaux Côtes de Francs', wine_region_id: bordeaux.id )
+brunello_di_montalcino_appellation = Appellation.find_or_create_by!( name: 'Brunello di Montalcino', wine_region_id: tuscany.id )
+ancient_lakes_appellation = Appellation.find_or_create_by!( name: 'Ancient Lakes', state_id: washington.id )
+champagne_appellation = Appellation.find_or_create_by!( name: 'Champagne', wine_region_id: champagne.id )
+beechworth_appellation = Appellation.find_or_create_by!( name: 'Beechworth', wine_region_id: north_east_victoria.id )
 
 chianti_appellation.blends << chianti_blend
-brunello_di_montalcino_appellation.varietals << Varietal.find_or_create_by( name: 'Sangiovese', is_black: true )
+brunello_di_montalcino_appellation.varietals << Varietal.find_or_create_by!( name: 'Sangiovese', is_black: true )
 
-Wine.find_or_create_by( name: 'Ruffino Riserva Ducale', country_id: italy.id, wine_type_id: red_wine.id, wine_region: tuscany, appellation: chianti_appellation )
-Wine.find_or_create_by( name: 'Argiano Brunello di Montalcino', country_id: italy.id, wine_type_id: red_wine.id, wine_region: tuscany, appellation: brunello_di_montalcino_appellation )
-Wine.find_or_create_by( name: 'Chàteau les Charmes-Godard', country_id: france.id, wine_type_id: red_wine.id, wine_region: bordeaux, appellation: bcdf_appellation )
-Wine.find_or_create_by( name: 'Kung Fu Girl', country_id: usa.id, wine_type_id: white_wine.id, state: washington, appellation: ancient_lakes_appellation, producer: 'Charles Smith' )
-Wine.find_or_create_by( name: 'Boizel', country_id: france.id, wine_type_id: sparkling_rose.id, wine_region: champagne, appellation: champagne_appellation ) 
-Wine.find_or_create_by( name: "Sophie's Block", country_id: australia.id, wine_type_id: white_wine.id, wine_region: north_east_victoria, appellation: beechworth_appellation, producer: "Piano Piano")
+Wine.find_or_create_by!( name: 'Ruffino Riserva Ducale', country_id: italy.id, wine_type_id: red_wine.id, wine_region: tuscany, appellation: chianti_appellation )
+Wine.find_or_create_by!( name: 'Argiano Brunello di Montalcino', country_id: italy.id, wine_type_id: red_wine.id, wine_region: tuscany, appellation: brunello_di_montalcino_appellation )
+Wine.find_or_create_by!( name: 'Chàteau les Charmes-Godard', country_id: france.id, wine_type_id: red_wine.id, wine_region: bordeaux, appellation: bcdf_appellation )
+Wine.find_or_create_by!( name: 'Kung Fu Girl', country_id: usa.id, wine_type_id: white_wine.id, state: washington, appellation: ancient_lakes_appellation, producer: 'Charles Smith' )
+Wine.find_or_create_by!( name: 'Boizel', country_id: france.id, wine_type_id: sparkling_rose.id, wine_region: champagne, appellation: champagne_appellation ) 
+Wine.find_or_create_by!( name: "Sophie's Block", country_id: australia.id, wine_type_id: white_wine.id, wine_region: north_east_victoria, appellation: beechworth_appellation, producer: "Piano Piano")
