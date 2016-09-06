@@ -1,10 +1,10 @@
 class CountrySerializer < ActiveModel::Serializer
-  attributes :id, :name
+  attributes :id, :name, :wine_regions, :states, :varietals, :blends
 
   has_many :wines
-#  has_many :wine_regions
-#  has_many :states
+  has_many :wine_regions
+  has_many :states
 
-#  has_many :varietals, serializer: VarietalSerializer
-#  has_and_belongs_to_many :blends
+  has_many :varietals
+  has_many :blends
 end
