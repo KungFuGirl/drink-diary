@@ -119,7 +119,7 @@ sparkling_rose = WineType.find_by( name: 'Sparkling rose wine' )
 tuscany = WineRegion.find_or_create_by!( name: 'Tuscany', country_id: italy.id )
 bordeaux = WineRegion.find_or_create_by!( name: 'Bordeaux', country_id: france.id )
 champagne = WineRegion.find_or_create_by!( name: 'Champagne', country_id: france.id )
-north_east_victoria = WineRegion.find_or_create_by!( name: 'North East Victoria' )
+north_east_victoria = WineRegion.find_or_create_by!( name: 'North East Victoria', country_id: australia.id )
 
 washington = State.find_or_create_by!( name: 'Washington')
 victoria = State.find_or_create_by!( name: 'Victoria' )
