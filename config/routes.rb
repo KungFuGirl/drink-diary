@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :states
   resources :varietals
   resources :blends
   resources :appellations
