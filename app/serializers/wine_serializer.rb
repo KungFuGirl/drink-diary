@@ -1,5 +1,5 @@
 class WineSerializer < ActiveModel::Serializer
-  attributes :id, :name
+  attributes :id, :name, :producer
  
   belongs_to :wine_type
   belongs_to :country
