@@ -10,7 +10,7 @@ class CountriesController < ApplicationController
 
   # GET /countries/1
   def show
-    render json: @country
+    render json: @country, include: params[:include]
   end
 
   # POST /countries
