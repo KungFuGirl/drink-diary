@@ -1,5 +1,5 @@
 class BlendSerializer < ActiveModel::Serializer
-  attributes :id, :name, :varietals
+  attributes :id, :name
 
   has_many :varietals
   has_many :wines
