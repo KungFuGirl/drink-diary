@@ -1,5 +1,5 @@
 class WineRegionSerializer < ActiveModel::Serializer
-  attributes :id, :name, :country, :state, :appellations, :varietals, :blends
+  attributes :id, :name
 
   belongs_to :country
   belongs_to :state, optional: true
