@@ -10,6 +10,7 @@
 #   when creating record, please use find_or_create_by! or create! so that validations will fail!
 #*********************
 
+# seed some countries
 countries_data = [
   { name: "USA" },
   { name: "France" },
@@ -26,17 +27,123 @@ france = Country.find_by( name: "France" )
 italy = Country.find_by( name: "Italy" )
 australia = Country.find_by( name: "Australia" )
 
-australian_states_data = [
-  { name: "New South Wales", country_id: australia.id },
-  { name: "Queensland", country_id: australia.id },
-  { name: "South Australia", country_id: australia.id },
-  { name: "Tasmania", country_id: australia.id },
-  { name: "Victoria", country_id: australia.id },
-  { name: "Western Australia", country_id: australia.id }
-]
+# https://en.wikipedia.org/wiki/List_of_wine-producing_regions#Australia
+australian_wine_regions_data = {
+  "South Australia": { 
+    "Barossa": [
+      "Barossa Valley",
+      "Eden Valley"
+    ],
+    "Far North": [
+      "Southern Flinders Ranges"
+    ],
+    "Fleurieu": [
+      "Currency Creek",
+      "Kangaroo Island",
+      "Langhorne Creek",
+      "McLaren Vale",
+      "Southern Fleurieu"
+    ],
+    "Limestone Coast": [
+      "Coonawarra",
+      "Mount Benson",
+      "Mount Gambier",
+      "Padthaway",
+      "Robe",
+      "Wrattonbully"
+    ],
+    "Lower Murray": [
+      "Riverland"
+    ],
+    "Mount Lofty Ranges": [
+      "Adelaide Hills",
+      "Adelaide Plains",
+      "Clare Valley"
+    ],
+    "The Peninsulas": []
+  },
+  "New South Wales": {
+    "Big Rivers": [],
+    "Hunter Valley": [],
+    "Central Ranges": [],
+    "Northern Rivers": [],
+    "Northern Slopes": [],
+    "South Coast": [],
+    "Southern NSW": []
+  },
+  "Victoria": {
+    "Central Victoria": [
+      "Bendigo",
+      "Goulburn Valley",
+      "Heathcote",
+      "Strathbogie Ranges",
+      "Upper Goulburn"
+    ],
+    "Gippsland": [],
+    "NE Victoria": [
+      "Alpine Valleys",
+      "Beechworth",
+      "Glenrowan",
+      "King Valley",
+      "Rutherglen"
+    ],
+    "NW Victoria": [
+      "Murray Darling",
+      "Swan Hill"
+    ],
+    "Port Phillip": [
+      "Geelong",
+      "Macedon Ranges",
+      "Mornington Peninsula",
+      "Sunbury",
+      "Yarra Valley"
+    ],
+    "Western Victoria": [
+      "Grampians",
+      "Henty",
+      "Pyrenees"
+    ]
+  },
+  "Western Australia": {
+    "Greater Perth": [
+      "Peel",
+      "Perth Hills",
+      "Swan Valley"
+    ],
+    "SW Australia": [
+      "Blackwood Valley",
+      "Geographe",
+      "Great Southern",
+      "Manjimup",
+      "Margaret River",
+      "Pemberton"
+    ]
+  },
+  "Queensland": {
+    "Granite Belt": [],
+    "South Burnett": []
+  },
+  "Tasmania": {
+    "Coal River": [],
+    "Derwent Valley": [],
+    "East Coast": [],
+    "North West": [],
+    "Pipers River": [],
+    "Southern": [],
+    "Tamar Valley": []
+  }
+}
 
-australian_states_data.each do |state_data|
-  State.find_or_create_by!(state_data)
+# add all australian states, wine regions, and appellations
+australian_wine_regions_data.each do |state, regions|
+  aus_state = State.find_or_create_by!({ name: state, country: australia })
+  regions.each do |region, appellations|
+    aus_region = WineRegion.find_or_create_by!({ name: region, country: australia, state: aus_state })
+    appellations.each do |appellation|
+      Appellation.find_or_create_by!({ name: appellation, state: aus_state, wine_region: aus_region})
+    end
+
+  end
 end
 
 usa_states_data = [
@@ -119,7 +226,7 @@ sparkling_rose = WineType.find_by( name: 'Sparkling rose wine' )
 tuscany = WineRegion.find_or_create_by!( name: 'Tuscany', country_id: italy.id )
 bordeaux = WineRegion.find_or_create_by!( name: 'Bordeaux', country_id: france.id )
 champagne = WineRegion.find_or_create_by!( name: 'Champagne', country_id: france.id )
-north_east_victoria = WineRegion.find_or_create_by!( name: 'North East Victoria', country_id: australia.id )
+#north_east_victoria = WineRegion.find_or_create_by!( name: 'North East Victoria', country_id: australia.id )
 
 washington = State.find_or_create_by!( name: 'Washington')
 victoria = State.find_or_create_by!( name: 'Victoria' )
@@ -140,7 +247,8 @@ bcdf_appellation = Appellation.find_or_create_by!( name: 'Bordeaux Côtes de Fra
 brunello_di_montalcino_appellation = Appellation.find_or_create_by!( name: 'Brunello di Montalcino', wine_region_id: tuscany.id )
 ancient_lakes_appellation = Appellation.find_or_create_by!( name: 'Ancient Lakes', state_id: washington.id )
 champagne_appellation = Appellation.find_or_create_by!( name: 'Champagne', wine_region_id: champagne.id )
-beechworth_appellation = Appellation.find_or_create_by!( name: 'Beechworth', wine_region_id: north_east_victoria.id )
+#beechworth_appellation = Appellation.find_or_create_by!( name: 'Beechworth', wine_region: WineRegion.find_by(north_east_victoria.id )
+beechworth_appellation = Appellation.find_or_create_by!( name: 'Beechworth', wine_region: WineRegion.find_by(name: "NE Victoria"), state: State.find_by(name: "Victoria"))
 
 chianti_appellation.blends << chianti_blend
 brunello_di_montalcino_appellation.varietals << Varietal.find_or_create_by!( name: 'Sangiovese', is_black: true )
@@ -150,4 +258,4 @@ Wine.find_or_create_by!( name: 'Argiano Brunello di Montalcino', country_id: ita
 Wine.find_or_create_by!( name: 'Chàteau les Charmes-Godard', country_id: france.id, wine_type_id: red_wine.id, wine_region: bordeaux, appellation: bcdf_appellation )
 Wine.find_or_create_by!( name: 'Kung Fu Girl', country_id: usa.id, wine_type_id: white_wine.id, state: washington, appellation: ancient_lakes_appellation, producer: 'Charles Smith', varietal: riesling )
 Wine.find_or_create_by!( name: 'Boizel', country_id: france.id, wine_type_id: sparkling_rose.id, wine_region: champagne, appellation: champagne_appellation ) 
-Wine.find_or_create_by!( name: "Sophie's Block", country_id: australia.id, wine_type_id: white_wine.id, wine_region: north_east_victoria, appellation: beechworth_appellation, producer: "Piano Piano", varietal: chardonnay)
+Wine.find_or_create_by!( name: "Sophie's Block", country_id: australia.id, wine_type_id: white_wine.id, wine_region: WineRegion.find_by(name: "NE Victoria"), appellation: beechworth_appellation, producer: "Piano Piano", varietal: chardonnay)
