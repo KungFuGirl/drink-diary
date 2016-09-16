@@ -112,6 +112,26 @@ wine_types_data.each do |type_data|
   WineType.find_or_create_by!( type_data )
 end
 
+france_wine_regions = [
+  { name: "Alsace", country_id: france.id },
+  { name: "Bordeaux", country_id: france.id },
+  { name: "Burgundy", country_id: france.id },
+  { name: "Champagne", country_id: france.id },
+  { name: "Lanquedoc-Roussillon", country_id: france.id },
+  { name: "Loire", country_id: france.id },
+  { name: "Provence", country_id: france.id },
+  { name: "Rhone", country_id: france.id },
+  { name: "Jura", country_id: france.id },
+  { name: "Corsica", country_id: france.id },
+  { name: "Savoie", country_id: france.id },
+  { name: "South-West France", country_id: france.id },
+  { name: "Beaujolais", country_id: france.id }
+]
+
+france_wine_regions.each do |region_data|
+  WineRegion.find_or_create_by!( region_data )
+end
+
 red_wine = WineType.find_by( name: 'Red wine' )
 white_wine = WineType.find_by( name: 'White wine' )
 sparkling_rose = WineType.find_by( name: 'Sparkling rose wine' )
