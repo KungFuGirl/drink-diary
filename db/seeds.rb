@@ -219,24 +219,45 @@ wine_types_data.each do |type_data|
   WineType.find_or_create_by!( type_data )
 end
 
-france_wine_regions = [
-  { name: "Alsace", country_id: france.id },
-  { name: "Bordeaux", country_id: france.id },
-  { name: "Burgundy", country_id: france.id },
-  { name: "Champagne", country_id: france.id },
-  { name: "Lanquedoc-Roussillon", country_id: france.id },
-  { name: "Loire", country_id: france.id },
-  { name: "Provence", country_id: france.id },
-  { name: "Rhone", country_id: france.id },
-  { name: "Jura", country_id: france.id },
-  { name: "Corsica", country_id: france.id },
-  { name: "Savoie", country_id: france.id },
-  { name: "South-West France", country_id: france.id },
-  { name: "Beaujolais", country_id: france.id }
+# French wine data. All wine regions and appellations.
+france_wine_data = [
+  { "Alsace": [
+
+
+
+    ] },
+  { "Bordeaux": [
+    ] },
+  { name: "Burgundy" },
+  { name: "Champagne" },
+  { name: "Lanquedoc-Roussillon" },
+  { name: "Loire" },
+  { name: "Provence" },
+  { name: "Rhone" },
+  { name: "Jura" },
+  { name: "Corsica" },
+  { name: "Savoie" },
+  { name: "South-West France" },
+  { name: "Beaujolais" }
 ]
 
-france_wine_regions.each do |region_data|
-  WineRegion.find_or_create_by!( region_data )
+france_wine_data.each do |region_data, appellations|
+  wine_region = WineRegion.find_or_create_by!( { name: region_data, country: france} )
+  appellations.each do |appellation|
+    Appellation.find_or_create_by!({ name: appellation, wine_region: wine_region})
+  end
+end
+
+
+australian_wine_regions_data.each do |state, regions|
+  aus_state = State.find_or_create_by!({ name: state, country: australia })
+  regions.each do |region, appellations|
+    aus_region = WineRegion.find_or_create_by!({ name: region, country: australia, state: aus_state })
+    appellations.each do |appellation|
+      Appellation.find_or_create_by!({ name: appellation, state: aus_state, wine_region: aus_region})
+    end
+
+  end
 end
 
 red_wine = WineType.find_by( name: 'Red wine' )
