@@ -204,6 +204,7 @@ usa_states_data.each do |state_data|
   State.find_or_create_by!(state_data)
 end
 
+# Wine types seed data
 wine_types_data = [
   { name: "Red wine" },
   { name: "White wine" },
@@ -219,50 +220,233 @@ wine_types_data.each do |type_data|
   WineType.find_or_create_by!( type_data )
 end
 
-# French wine data. All wine regions and appellations.
-france_wine_data = [
-  { "Alsace": [
-
-
-
-    ] },
-  { "Bordeaux": [
-    ] },
-  { name: "Burgundy" },
-  { name: "Champagne" },
-  { name: "Lanquedoc-Roussillon" },
-  { name: "Loire" },
-  { name: "Provence" },
-  { name: "Rhone" },
-  { name: "Jura" },
-  { name: "Corsica" },
-  { name: "Savoie" },
-  { name: "South-West France" },
-  { name: "Beaujolais" }
-]
-
-france_wine_data.each do |region_data, appellations|
-  wine_region = WineRegion.find_or_create_by!( { name: region_data, country: france} )
-  appellations.each do |appellation|
-    Appellation.find_or_create_by!({ name: appellation, wine_region: wine_region})
-  end
-end
-
-
-australian_wine_regions_data.each do |state, regions|
-  aus_state = State.find_or_create_by!({ name: state, country: australia })
-  regions.each do |region, appellations|
-    aus_region = WineRegion.find_or_create_by!({ name: region, country: australia, state: aus_state })
-    appellations.each do |appellation|
-      Appellation.find_or_create_by!({ name: appellation, state: aus_state, wine_region: aus_region})
-    end
-
-  end
-end
-
+# Wine types variables
 red_wine = WineType.find_by( name: 'Red wine' )
 white_wine = WineType.find_by( name: 'White wine' )
 sparkling_rose = WineType.find_by( name: 'Sparkling rose wine' )
+
+
+# French wine data. All wine regions and appellations.
+france_wine_data_array = [
+# ??????? Côtes de Toul from Eastern France
+
+  # Alsace wine region:
+  { "Alsace": 
+    [ "Alsace",
+      "Alsace Grand Cru",
+
+    ] },
+  # Beaujolais wine region: 
+  { "Beaujolais": 
+    [ "Beaujolais",
+      "Beaujolais-Villages",
+      "Brouilly",
+      "Chénas",
+      "Chiroubles",
+      "Côte de Brouilly",
+
+    ] },
+  # Bordeaux wine region: 
+  { "Bordeaux": 
+    [ "Barsac",
+      "Blaye",
+      "Bordeaux",
+      "Bordeaux clairet",
+      "Bordeaux Côtes de Francs",
+      "Bordeaux Haut-Benauge",
+      "Bordeaux moelleux",
+      "Bordeaux rosé",
+      "Bordeaux sec",
+      "Bordeaux supérieur",
+      "Cadillac",
+      "Canon Fronsac",
+      "Cérons",
+      "Côtes de Blaye",
+      "Côtes de Bordeaux Saint-Macaire",
+      "Côtes de Bourg",
+      "Côtes de Castillon",
+
+
+    ] },
+  # Bugey small wine regions outside any major ones
+  { "Bugey": 
+    [ "Bugey",
+
+    ]
+  }
+  # Burgundy wine region: 
+  { "Burgundy": 
+    [ "Aloxe-Corton",
+      "Auxey-Duresses",
+      "Bâtard-Montrachet",
+      "Beaune",
+      "Bienvenues-Bâtard-Montrachet",
+      "Blagny",
+      "Bonnes-Mares",
+      "Bourgogne",
+      "Bourgogne Aligoté",
+      "Bourgogne Clairet",
+      "Bourgogne Clairet Côte Chalonnaise",
+      "Bourgogne Coulanges-la-Vineuse",
+      "Bourgogne Côte Saint-Jacques",
+      "Bourgogne Coulanges-la-Vineuse",
+      "Bourgogne Côtes d'Auxerre",
+      "Bourgogne Côtes du Couchois",
+      "Bourgogne Epineuil",
+      "Bourgogne Grand Ordinaire",
+      "Bourgogne Hautes-côtes de Beaune",
+      "Bourgogne Hautes-côtes de Nuits",
+      "Bourgogne La Chapelle Notre-Dame",
+      "Bourgogne le Chapitre",
+      "Bourgogne Montrecul",
+      "Bourgogne Mousseux",
+      "Bourgogne Ordinaire",
+      "Bourgogne Passe-tout-grains",
+      "Bourgogne Vézelay",
+      "Bourgogne rosé,"
+      "Bouzeron",
+      "Chablis",
+      "Chablis Grand Cru",
+      "Chablis Premier Cru",
+      "Chambertin",
+      "Chambertin-Clos-de-Beze",
+      "Chambolle-Musigny",
+      "Chapelle-Chambertin",
+      "Charlemagne",
+      "Charmes-Chambertin",
+      "Chassagne-Montrachet",
+      "Chevalier-Montrachet",
+      "Chorey-les-Beaune",
+      "Clos des Lambrays",
+      "Clos de la Roche",
+      "Clos de Tart",
+      "Clos de Vougeot",
+      "Clos Saint-Denis",
+      "Corton",
+      "Corton-Charlemagne",
+      "Côte de Beaune",
+      "Côte de Beaune-Villages",
+      "Côte de Nuits-villages",
+      "Côtes du Forez",
+
+
+    ] },
+  # Champagne wine region:
+  { "Champagne": 
+    [ "Champagne",
+      "Coteaux Champenois",
+
+    ] },
+  # Languedoc-Roussillon wine region:
+  { "Languedoc-Roussillon": 
+    [ "Banyuls",
+      "Banyuls Grand Cru",
+      "Blanquette de Limoux",
+      "Blanquette méthode ancestrale",
+      "Cabardes",
+      "Clairette de Bellegarde",
+      "Clairette du Languedoc",
+      "Collioure",
+      "Corbieres",
+      "Coteaux du Languedoc",
+      "Côtes de la Malepere",
+
+    ] },
+  # Loire wine region: 
+  { "Loire": 
+    [ "Anjou",
+      "Anjou-Coteaux de la Loire",
+      "Anjou-Gamay",
+      "Anjou mousseux",
+      "Anjou Villages",
+      "Anjou Villages Brissac",
+      "Bonnezeaux",
+      "Bourgueil",
+      "Cabernet d'Anjou",
+      "Cabernet de Saumur",
+      "Chaume",
+      "Cheverny",
+      "Chinon",
+      "Côte Roannaise",
+      "Coteaux de l'Aubance",
+      "Coteaux du Giennois",
+      "Coteaux du Layon",
+      "Coteaux du Loir",
+      "Coteaux de Saumur",
+      "Coteaux du Vendômois",
+
+    ] },
+  # Small wine area around city of Lion
+  { "Lyonnais": [ "Coteaux du Lyonnais" ] },
+  # Provence wine region: 
+  { "Provence": 
+    [ "Bandol",
+      "Bellet",
+      "Cassis",
+      "Coteaux d'Aix-en-Provence",
+      "Coteaux de Pierrevert",
+      "Coteaux Varois",
+      "Côtes de Provence",
+
+    ] },
+
+  # Rhone wine region: 
+  { "Rhône": 
+    [ "Beaumes de Venise",
+      "Château-Grillet",
+      "Châteauneuf-du-Pape",
+      "Châtillon-en-Diois",
+      "Clairette de Die",
+      "Condrieu",
+      "Cornas",
+      "Costières de Nîmes",
+      "Côte-Rôtie",
+      "Coteaux de Die",
+      "Coteaux du Tricastin",
+
+    ] },
+  # Jura wine region:
+  { "Jura": 
+    [ "Arbois",
+      "Château-Chalon"
+
+    ] },
+  # Corsica wine region:
+  { "Corsica": 
+    [ "Ajaccio",
+      "Corse",
+
+    ] },
+  # Savoie wine region:
+  { "Savoie": [
+
+    ] },
+  # South-West of France:
+  { "South-West France": 
+    [ "Béarn",
+      "Bergerac",
+      "Bergerac sec",
+      "Bergerac rosé",
+      "Buzet",
+      "Cahors",
+      "Coteaux du Quercy",
+      "Côtes de Bergerac",
+      "Côtes de Bergerac Blanc",
+      "Côtes de Duras",
+      "Côtes de Millau",
+      "Côtes de Montravel",
+
+    ] }
+]
+
+france_wine_data_array.each do |data_array|
+  data_array.each do | region_name, appellations_array |
+    wine_region = WineRegion.find_or_create_by!( { name: region_name, country: france} )  
+    appellations_array.each do |appellation_name|
+      Appellation.find_or_create_by!({ name: appellation_name, wine_region: wine_region})
+    end
+  end
+end
 
 tuscany = WineRegion.find_or_create_by!( name: 'Tuscany', country_id: italy.id )
 bordeaux = WineRegion.find_or_create_by!( name: 'Bordeaux', country_id: france.id )
@@ -272,6 +456,7 @@ champagne = WineRegion.find_or_create_by!( name: 'Champagne', country_id: france
 washington = State.find_or_create_by!( name: 'Washington')
 victoria = State.find_or_create_by!( name: 'Victoria' )
 
+# Varietals data sample
 cabernet_sauvignon = Varietal.find_or_create_by!( name: 'Cabernet Sauvignon', is_black: true )
 canaiolo = Varietal.find_or_create_by!( name: 'Canaiolo', is_black: true )
 chardonnay = Varietal.find_or_create_by!( name: 'Chardonnay', is_black: false )
