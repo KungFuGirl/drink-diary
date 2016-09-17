@@ -228,15 +228,11 @@ sparkling_rose = WineType.find_by( name: 'Sparkling rose wine' )
 
 # French wine data. All wine regions and appellations.
 france_wine_data_array = [
-# ??????? Côtes de Toul from Eastern France
-
   # Alsace wine region:
   { "Alsace": 
     [ "Alsace",
       "Alsace Grand Cru",
-      "Crémant d'Alsace",
-
-
+      "Crémant d'Alsace"
     ] },
   # Beaujolais wine region: 
   { "Beaujolais": 
@@ -251,8 +247,7 @@ france_wine_data_array = [
       "Morgon",
       "Moulin a vent",
       "Régnié",
-      "Saint-Amour",
-
+      "Saint-Amour"
     ] },
   # Bordeaux wine region: 
   { "Bordeaux": 
@@ -303,8 +298,7 @@ france_wine_data_array = [
       "Saint-Julien",
       "Sainte-Croix-du-Mont",  
       "Sainte-Foy-Bordeaux",
-      "Sauternes",
-
+      "Sauternes"
     ] },
   # Bugey small wine regions outside any major ones
   { "Bugey": 
@@ -414,21 +408,24 @@ france_wine_data_array = [
       "Santenay",
       "Savigny-les-Beaune",
       "Tonnerre",
-
+      "Vins Fins de la Côte de Nuits", 
+      "Viré-Clessé",
+      "Volnay",
+      "Volnay Santenots",
+      "Vosne-Romanée",
+      "Vougeot"
     ] },
   # Champagne wine region:
   { "Champagne": 
     [ "Champagne",
       "Coteaux Champenois",
-      "Rosé des Riceys",
-
+      "Rosé des Riceys"
     ] },
   # Corsica wine region:
   { "Corsica": 
     [ "Ajaccio",
       "Corse",
-      "Patrimonio",
-
+      "Patrimonio"
     ] },
   # Jura wine region:
   { "Jura": 
@@ -436,8 +433,7 @@ france_wine_data_array = [
       "Château-Chalon",
       "Côtes du Jura",
       "Crémant du Jura",
-      "L'Étoile",
-
+      "L'Étoile"
     ] },
   # Languedoc-Roussillon wine region:
   { "Languedoc-Roussillon": 
@@ -469,8 +465,7 @@ france_wine_data_array = [
       "Muscat de Rivesaltes",
       "Muscat de Saint-Jean de Minervois",
       "Rivesaltes",
-      "Saint-Chinian",
-
+      "Saint-Chinian"
     ] },
   # Loire wine region: 
   { "Loire": 
@@ -528,8 +523,10 @@ france_wine_data_array = [
       "Touraine-Mesland", 
       "Touraine Noble Joué",
       "Valençay",
-
+      "Vouvray"
     ] },
+  # Small wine area in Eastern France
+  { "Lorraine": [ "Côtes de Toul" ] },
   # Small wine area around city of Lion
   { "Lyonnais": [ "Coteaux du Lyonnais" ] },
   # Provence wine region: 
@@ -542,10 +539,8 @@ france_wine_data_array = [
       "Coteaux Varois",
       "Côtes de Provence",
       "Les Baux-de-Provence",
-      "Palette",
-
+      "Palette"
     ] },
-
   # Rhone wine region: 
   { "Rhône": 
     [ "Beaumes de Venise",
@@ -574,15 +569,14 @@ france_wine_data_array = [
       "Saint-Péray",
       "Tavel",
       "Vacqueyras",
-
+      "Vinsobres"
     ] },
   # Savoie wine region:
   { "Savoie": 
     [ "Crépy",
       "Roussette de Savoie",
       "Seyssel",
-      "Vin de Savoie",
-
+      "Vin de Savoie"
     ] },
   # South-West of France:
   { "South-West France": 
@@ -617,7 +611,8 @@ france_wine_data_array = [
       "Saint-Sardos",
       "Saussignac",
       "Tursan",
-
+      "Vins d'Entraygues et du Fel",
+      "Vins d'Estaing"
     ] }
 ]
 
