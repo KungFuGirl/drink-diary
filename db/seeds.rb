@@ -234,6 +234,8 @@ france_wine_data_array = [
   { "Alsace": 
     [ "Alsace",
       "Alsace Grand Cru",
+      "Crémant d'Alsace",
+
 
     ] },
   # Beaujolais wine region: 
@@ -244,6 +246,12 @@ france_wine_data_array = [
       "Chénas",
       "Chiroubles",
       "Côte de Brouilly",
+      "Fleurie",
+      "Juliénas",
+      "Morgon",
+      "Moulin a vent",
+      "Régnié",
+      "Saint-Amour",
 
     ] },
   # Bordeaux wine region: 
@@ -265,13 +273,43 @@ france_wine_data_array = [
       "Côtes de Bordeaux Saint-Macaire",
       "Côtes de Bourg",
       "Côtes de Castillon",
-
+      "Crémant de Bordeaux",
+      "Entre-Deux-Mers",
+      "Entre-Deux-Mers-Haut-Benauge",
+      "Fronsac",
+      "Graves",
+      "Graves de Vayres",
+      "Graves Supérieures",
+      "Haut-Médoc",
+      "Lalande-de-Pomerol",
+      "Listrac-Médoc",
+      "Loupiac",
+      "Lussac-Saint-Émilion",
+      "Margaux",
+      "Médoc",
+      "Montagne Saint-Émilion",
+      "Moulis-en-Médoc",
+      "Néac",
+      "Pauillac",
+      "Pessac-Léognan",
+      "Pomerol",
+      "Premieres Côtes de Blaye",
+      "Premieres Côtes de Bordeaux",
+      "Puisseguin Saint-Émilion",
+      "Saint-Émilion",
+      "Saint-Émilion Grand Cru",
+      "Saint-Estephe",
+      "Saint-Georges Saint-Émilion",
+      "Saint-Julien",
+      "Sainte-Croix-du-Mont",  
+      "Sainte-Foy-Bordeaux",
+      "Sauternes",
 
     ] },
   # Bugey small wine regions outside any major ones
   { "Bugey": 
     [ "Bugey",
-
+      "Roussette du Bugey"
     ]
   }
   # Burgundy wine region: 
@@ -328,13 +366,77 @@ france_wine_data_array = [
       "Côte de Beaune-Villages",
       "Côte de Nuits-villages",
       "Côtes du Forez",
-
+      "Crémant de Bourgogne",
+      "Criots-Bâtard-Montrachet",
+      "Échezeaux",
+      "Fixin",
+      "Gevrey-Chambertin",
+      "Givry",
+      "Grands Échezeaux",
+      "Griotte-Chambertin",
+      "Irancy",
+      "Ladoix",
+      "La Grande Rue",
+      "La Romanée",
+      "La Tâche",
+      "Latricieres-Chambertin",
+      "Mâcon",
+      "Mâcon supérieur",
+      "Mâcon-villages",
+      "Maranges",
+      "Marsannay",
+      "Mazis-Chambertin",
+      "Mazoyeres-Chambertin",
+      "Mercurey",
+      "Meursault",
+      "Montagny",
+      "Monthelie",
+      "Montrachet",
+      "Morey-Saint-Denis",
+      "Musigny",
+      "Nuits-Saint-Georges",
+      "Pernand-Vergelesses",
+      "Petit Chablis",
+      "Pommard",
+      "Pouilly-Fuissé",
+      "Pouilly-Loché",
+      "Pouilly-Vinzelles",
+      "Puligny-Montrachet",
+      "Richebourg",
+      "Romanée-Conti",
+      "Romanée-Saint-Vivant",
+      "Ruchottes-Chambertin",
+      "Rully",
+      "Saint-Aubin",
+      "Saint-Bris",
+      "Saint-Romain",
+      "Saint-Véran",
+      "Santenay",
+      "Savigny-les-Beaune",
+      "Tonnerre",
 
     ] },
   # Champagne wine region:
   { "Champagne": 
     [ "Champagne",
       "Coteaux Champenois",
+      "Rosé des Riceys",
+
+    ] },
+  # Corsica wine region:
+  { "Corsica": 
+    [ "Ajaccio",
+      "Corse",
+      "Patrimonio",
+
+    ] },
+  # Jura wine region:
+  { "Jura": 
+    [ "Arbois",
+      "Château-Chalon",
+      "Côtes du Jura",
+      "Crémant du Jura",
+      "L'Étoile",
 
     ] },
   # Languedoc-Roussillon wine region:
@@ -350,6 +452,24 @@ france_wine_data_array = [
       "Corbieres",
       "Coteaux du Languedoc",
       "Côtes de la Malepere",
+      "Côtes du Roussillon",
+      "Côtes du Roussillon Villages",
+      "Crémant de Limoux",
+      "Faugeres",
+      "Fitou",
+      "Frontignan",
+      "Grand Roussillon",
+      "Limoux",
+      "Maury",
+      "Minervois",
+      "Minervois-La Liviniere",
+      "Muscat de Frontignan",
+      "Muscat de Lunel",
+      "Muscat de Mireval",
+      "Muscat de Rivesaltes",
+      "Muscat de Saint-Jean de Minervois",
+      "Rivesaltes",
+      "Saint-Chinian",
 
     ] },
   # Loire wine region: 
@@ -374,6 +494,40 @@ france_wine_data_array = [
       "Coteaux du Loir",
       "Coteaux de Saumur",
       "Coteaux du Vendômois",
+      "Cour-Cheverny",
+      "Crémant de Loire",
+      "Haut-Poitou",
+      "Jasnieres",
+      "Menetou-Salon",
+      "Montlouis",
+      "Muscadet",
+      "Muscadet-Coteaux de la Loire",
+      "Muscadet-Côtes de Grandlieu",
+      "Muscadet-Sevre et Maine",
+      "Orléans",
+      "Orléans-Cléry",
+      "Pouilly-Fumé",
+      "Pouilly-sur-Loire",
+      "Quarts de Chaume",
+      "Quincy",
+      "Reuilly",
+      "Rosé d'Anjou",
+      "Rosé de Loire",
+      "Saint-Nicolas-de-Bourgueil",
+      "Saint-Pourçain",
+      "Sancerre",
+      "Saumur",  
+      "Saumur-Champigny",  
+      "Saumur mousseux",
+      "Savennières",  
+      "Savennières-Coulée-de-Serrant",  
+      "Savennières-Roche-aux-Moines",
+      "Touraine",
+      "Touraine-Amboise", 
+      "Touraine-Azay-le-Rideau",  
+      "Touraine-Mesland", 
+      "Touraine Noble Joué",
+      "Valençay",
 
     ] },
   # Small wine area around city of Lion
@@ -387,6 +541,8 @@ france_wine_data_array = [
       "Coteaux de Pierrevert",
       "Coteaux Varois",
       "Côtes de Provence",
+      "Les Baux-de-Provence",
+      "Palette",
 
     ] },
 
@@ -403,22 +559,29 @@ france_wine_data_array = [
       "Côte-Rôtie",
       "Coteaux de Die",
       "Coteaux du Tricastin",
-
-    ] },
-  # Jura wine region:
-  { "Jura": 
-    [ "Arbois",
-      "Château-Chalon"
-
-    ] },
-  # Corsica wine region:
-  { "Corsica": 
-    [ "Ajaccio",
-      "Corse",
+      "Côtes du Luberon",
+      "Côtes du Rhône",
+      "Côtes du Rhône Villages",
+      "Côtes du Ventoux",
+      "Côtes du Vivarais",
+      "Crémant de Die",
+      "Crozes-Hermitage",
+      "Gigondas",
+      "Hermitage",
+      "Lirac",
+      "Muscat de Beaumes-de-Venise",
+      "Saint-Joseph",
+      "Saint-Péray",
+      "Tavel",
+      "Vacqueyras",
 
     ] },
   # Savoie wine region:
-  { "Savoie": [
+  { "Savoie": 
+    [ "Crépy",
+      "Roussette de Savoie",
+      "Seyssel",
+      "Vin de Savoie",
 
     ] },
   # South-West of France:
@@ -435,6 +598,25 @@ france_wine_data_array = [
       "Côtes de Duras",
       "Côtes de Millau",
       "Côtes de Montravel",
+      "Côtes du Marmandais",
+      "Fronton",
+      "Gaillac",
+      "Gaillac Premieres Côtess",
+      "Haut-Montravel",
+      "Irouléguy",
+      "Jurançon",
+      "Madiran",
+      "Marcillac",
+      "Monbazillac",
+      "Montravel",
+      "Pacherenc du Vic-Bilh",
+      "Pacherenc du Vic-Bilh Sec",
+      "Pécharmant",
+      "Rosette",
+      "Saint-Mont",
+      "Saint-Sardos",
+      "Saussignac",
+      "Tursan",
 
     ] }
 ]
