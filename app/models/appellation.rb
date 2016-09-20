@@ -6,6 +6,7 @@ class Appellation < ApplicationRecord
   has_and_belongs_to_many :varietals
   has_and_belongs_to_many :blends
   has_many :wines
+  belongs_to :classification
 
   def presence_of_state_or_wine_region
     unless wine_region.present? || state.present?
