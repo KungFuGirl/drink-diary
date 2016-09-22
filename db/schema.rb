@@ -10,17 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160904221944) do
+ActiveRecord::Schema.define(version: 20160921212348) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "appellations", force: :cascade do |t|
-    t.string   "name",           null: false
+    t.string   "name",              null: false
     t.integer  "wine_region_id"
     t.integer  "state_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "classification_id"
+    t.index ["classification_id"], name: "index_appellations_on_classification_id", using: :btree
     t.index ["state_id"], name: "index_appellations_on_state_id", using: :btree
     t.index ["wine_region_id"], name: "index_appellations_on_wine_region_id", using: :btree
   end
@@ -56,6 +58,14 @@ ActiveRecord::Schema.define(version: 20160904221944) do
     t.integer "wine_region_id"
   end
 
+  create_table "classifications", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "country_id"
+    t.index ["country_id"], name: "index_classifications_on_country_id", using: :btree
+  end
+
   create_table "countries", force: :cascade do |t|
     t.string   "name",       null: false
     t.datetime "created_at", null: false
@@ -65,6 +75,34 @@ ActiveRecord::Schema.define(version: 20160904221944) do
   create_table "countries_varietals", id: false, force: :cascade do |t|
     t.integer "country_id"
     t.integer "varietal_id"
+  end
+
+  create_table "flavors", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.integer  "country_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["country_id"], name: "index_flavors_on_country_id", using: :btree
+  end
+
+  create_table "ingredients", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "notes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "text_note"
+    t.integer  "rating",            null: false
+    t.date     "date"
+    t.integer  "sweetness_rating"
+    t.string   "purchase_location"
+    t.integer  "price"
+    t.string   "currency"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["user_id"], name: "index_notes_on_user_id", using: :btree
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -151,8 +189,12 @@ ActiveRecord::Schema.define(version: 20160904221944) do
     t.index ["wine_type_id"], name: "index_wines_on_wine_type_id", using: :btree
   end
 
+  add_foreign_key "appellations", "classifications"
   add_foreign_key "appellations", "states"
   add_foreign_key "appellations", "wine_regions"
+  add_foreign_key "classifications", "countries"
+  add_foreign_key "flavors", "countries"
+  add_foreign_key "notes", "users"
   add_foreign_key "reviews", "users"
   add_foreign_key "reviews", "wines"
   add_foreign_key "states", "countries"
