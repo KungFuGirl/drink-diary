@@ -3,5 +3,5 @@ class Flavor < ApplicationRecord
 
   belongs_to :country
   # has_and_belongs_to_many :sodas
-  # has_and_belongs_to_many :flavors
+
 end
