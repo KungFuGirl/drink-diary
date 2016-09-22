@@ -92,6 +92,8 @@ ActiveRecord::Schema.define(version: 20160921214741) do
     t.string   "currency"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+    t.integer  "soda_id"
+    t.index ["soda_id"], name: "index_notes_on_soda_id", using: :btree
     t.index ["user_id"], name: "index_notes_on_user_id", using: :btree
   end
 
@@ -129,7 +131,7 @@ ActiveRecord::Schema.define(version: 20160921214741) do
 
   create_table "sodas", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "soda_id"
+    t.integer  "country_id"
     t.string   "name"
     t.string   "brand"
     t.string   "origin_data"
@@ -139,7 +141,7 @@ ActiveRecord::Schema.define(version: 20160921214741) do
     t.integer  "users_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.index ["soda_id"], name: "index_sodas_on_soda_id", using: :btree
+    t.index ["country_id"], name: "index_sodas_on_country_id", using: :btree
     t.index ["user_id"], name: "index_sodas_on_user_id", using: :btree
     t.index ["users_id"], name: "index_sodas_on_users_id", using: :btree
   end
@@ -213,12 +215,13 @@ ActiveRecord::Schema.define(version: 20160921214741) do
   add_foreign_key "appellations", "states"
   add_foreign_key "appellations", "wine_regions"
   add_foreign_key "flavors", "countries"
+  add_foreign_key "notes", "sodas"
   add_foreign_key "notes", "users"
   add_foreign_key "photos", "sodas"
   add_foreign_key "photos", "users"
   add_foreign_key "reviews", "users"
   add_foreign_key "reviews", "wines"
-  add_foreign_key "sodas", "sodas"
+  add_foreign_key "sodas", "countries"
   add_foreign_key "sodas", "users"
   add_foreign_key "states", "countries"
   add_foreign_key "wine_regions", "countries"
