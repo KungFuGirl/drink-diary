@@ -14,5 +14,6 @@ class CreateSodas < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
+    add_reference :photos, :soda, foreign_key: true
   end
 end
