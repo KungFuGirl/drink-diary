@@ -5,4 +5,5 @@ class Country < ApplicationRecord
   has_many :states
   has_and_belongs_to_many :varietals
   has_and_belongs_to_many :blends
+  has_many :flavors
 end
