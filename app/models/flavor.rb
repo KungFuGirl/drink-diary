@@ -8,6 +8,14 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
+# Indexes
+#
+#  index_flavors_on_country_id  (country_id)
+#
+# Foreign Keys
+#
+#  fk_rails_3225746def  (country_id => countries.id)
+#
 
 class Flavor < ApplicationRecord
   validates_presence_of :name

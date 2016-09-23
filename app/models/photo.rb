@@ -13,6 +13,16 @@
 #  updated_at         :datetime         not null
 #  soda_id            :integer
 #
+# Indexes
+#
+#  index_photos_on_soda_id  (soda_id)
+#  index_photos_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_c79d76afc0  (user_id => users.id)
+#  fk_rails_e8947d77fc  (soda_id => sodas.id)
+#
 
 class Photo < ApplicationRecord
   belongs_to :soda
