@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160904221944) do
+ActiveRecord::Schema.define(version: 20160921214741) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,6 +67,50 @@ ActiveRecord::Schema.define(version: 20160904221944) do
     t.integer "varietal_id"
   end
 
+  create_table "flavors", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.integer  "country_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["country_id"], name: "index_flavors_on_country_id", using: :btree
+  end
+
+  create_table "ingredients", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "notes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "text_note"
+    t.integer  "rating",            null: false
+    t.date     "date"
+    t.integer  "sweetness_rating"
+    t.string   "purchase_location"
+    t.integer  "price"
+    t.string   "currency"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "soda_id"
+    t.index ["soda_id"], name: "index_notes_on_soda_id", using: :btree
+    t.index ["user_id"], name: "index_notes_on_user_id", using: :btree
+  end
+
+  create_table "photos", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "photo_file_name",    null: false
+    t.string   "photo_content_type", null: false
+    t.integer  "photo_file_size",    null: false
+    t.datetime "photo_updated_at",   null: false
+    t.boolean  "is_private"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "soda_id"
+    t.index ["soda_id"], name: "index_photos_on_soda_id", using: :btree
+    t.index ["user_id"], name: "index_photos_on_user_id", using: :btree
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "wine_id"
@@ -83,6 +127,25 @@ ActiveRecord::Schema.define(version: 20160904221944) do
     t.datetime "updated_at",         null: false
     t.index ["user_id"], name: "index_reviews_on_user_id", using: :btree
     t.index ["wine_id"], name: "index_reviews_on_wine_id", using: :btree
+  end
+
+  create_table "sodas", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "country_id"
+    t.string   "name"
+    t.string   "brand"
+    t.string   "origin_data"
+    t.boolean  "is_diet"
+    t.boolean  "is_caffeinated"
+    t.string   "color"
+    t.integer  "creator_id"
+    t.integer  "last_editor_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["country_id"], name: "index_sodas_on_country_id", using: :btree
+    t.index ["creator_id"], name: "index_sodas_on_creator_id", using: :btree
+    t.index ["last_editor_id"], name: "index_sodas_on_last_editor_id", using: :btree
+    t.index ["user_id"], name: "index_sodas_on_user_id", using: :btree
   end
 
   create_table "states", force: :cascade do |t|
@@ -153,8 +216,17 @@ ActiveRecord::Schema.define(version: 20160904221944) do
 
   add_foreign_key "appellations", "states"
   add_foreign_key "appellations", "wine_regions"
+  add_foreign_key "flavors", "countries"
+  add_foreign_key "notes", "sodas"
+  add_foreign_key "notes", "users"
+  add_foreign_key "photos", "sodas"
+  add_foreign_key "photos", "users"
   add_foreign_key "reviews", "users"
   add_foreign_key "reviews", "wines"
+  add_foreign_key "sodas", "countries"
+  add_foreign_key "sodas", "users"
+  add_foreign_key "sodas", "users", column: "creator_id"
+  add_foreign_key "sodas", "users", column: "last_editor_id"
   add_foreign_key "states", "countries"
   add_foreign_key "wine_regions", "countries"
   add_foreign_key "wine_regions", "states"
