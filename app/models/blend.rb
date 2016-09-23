@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: blends
+#
+#  id         :integer          not null, primary key
+#  name       :string           not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Blend < ApplicationRecord
   validates_presence_of :name
 
