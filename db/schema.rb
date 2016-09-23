@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160921214741) do
+ActiveRecord::Schema.define(version: 20160923193142) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,10 +75,24 @@ ActiveRecord::Schema.define(version: 20160921214741) do
     t.index ["country_id"], name: "index_flavors_on_country_id", using: :btree
   end
 
+  create_table "flavors_sodas", id: false, force: :cascade do |t|
+    t.integer "flavor_id"
+    t.integer "soda_id"
+    t.index ["flavor_id"], name: "index_flavors_sodas_on_flavor_id", using: :btree
+    t.index ["soda_id"], name: "index_flavors_sodas_on_soda_id", using: :btree
+  end
+
   create_table "ingredients", force: :cascade do |t|
     t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "ingredients_sodas", id: false, force: :cascade do |t|
+    t.integer "ingredient_id"
+    t.integer "soda_id"
+    t.index ["ingredient_id"], name: "index_ingredients_sodas_on_ingredient_id", using: :btree
+    t.index ["soda_id"], name: "index_ingredients_sodas_on_soda_id", using: :btree
   end
 
   create_table "notes", force: :cascade do |t|
@@ -217,6 +231,10 @@ ActiveRecord::Schema.define(version: 20160921214741) do
   add_foreign_key "appellations", "states"
   add_foreign_key "appellations", "wine_regions"
   add_foreign_key "flavors", "countries"
+  add_foreign_key "flavors_sodas", "flavors"
+  add_foreign_key "flavors_sodas", "sodas"
+  add_foreign_key "ingredients_sodas", "ingredients"
+  add_foreign_key "ingredients_sodas", "sodas"
   add_foreign_key "notes", "sodas"
   add_foreign_key "notes", "users"
   add_foreign_key "photos", "sodas"
