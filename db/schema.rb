@@ -138,12 +138,14 @@ ActiveRecord::Schema.define(version: 20160921214741) do
     t.boolean  "is_diet"
     t.boolean  "is_caffeinated"
     t.string   "color"
-    t.integer  "users_id"
+    t.integer  "creator_id"
+    t.integer  "last_editor_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.index ["country_id"], name: "index_sodas_on_country_id", using: :btree
+    t.index ["creator_id"], name: "index_sodas_on_creator_id", using: :btree
+    t.index ["last_editor_id"], name: "index_sodas_on_last_editor_id", using: :btree
     t.index ["user_id"], name: "index_sodas_on_user_id", using: :btree
-    t.index ["users_id"], name: "index_sodas_on_users_id", using: :btree
   end
 
   create_table "states", force: :cascade do |t|
@@ -223,6 +225,8 @@ ActiveRecord::Schema.define(version: 20160921214741) do
   add_foreign_key "reviews", "wines"
   add_foreign_key "sodas", "countries"
   add_foreign_key "sodas", "users"
+  add_foreign_key "sodas", "users", column: "creator_id"
+  add_foreign_key "sodas", "users", column: "last_editor_id"
   add_foreign_key "states", "countries"
   add_foreign_key "wine_regions", "countries"
   add_foreign_key "wine_regions", "states"
