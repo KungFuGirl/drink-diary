@@ -5,7 +5,7 @@ class Soda < ApplicationRecord
   has_many :photos
   has_and_belongs_to_many :flavors
   has_and_belongs_to_many :ingredients
-  has_and_belongs_to_many :notes
+  has_many :notes
   before_save :downcase_hex
   
   # only allow 6 digit hex colors

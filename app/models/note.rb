@@ -8,5 +8,5 @@ class Note < ApplicationRecord
   # price is always stored as integer in cents/lowest monetary denominator
   validates :price, numericality: { only_integer: true }
   belongs_to :user
-  # belongs_to :soda
+  belongs_to :soda
 end
