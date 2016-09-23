@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: states
+#
+#  id         :integer          not null, primary key
+#  name       :string           not null
+#  country_id :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class State < ApplicationRecord
   validates_presence_of :name
   belongs_to :country

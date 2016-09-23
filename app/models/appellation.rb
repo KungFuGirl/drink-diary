@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: appellations
+#
+#  id             :integer          not null, primary key
+#  name           :string           not null
+#  wine_region_id :integer
+#  state_id       :integer
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#
+
 class Appellation < ApplicationRecord
   validates_presence_of :name
   validate :presence_of_state_or_wine_region

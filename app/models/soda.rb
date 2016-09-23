@@ -1,3 +1,22 @@
+# == Schema Information
+#
+# Table name: sodas
+#
+#  id             :integer          not null, primary key
+#  user_id        :integer
+#  country_id     :integer
+#  name           :string
+#  brand          :string
+#  origin_data    :string
+#  is_diet        :boolean
+#  is_caffeinated :boolean
+#  color          :string
+#  creator_id     :integer
+#  last_editor_id :integer
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#
+
 class Soda < ApplicationRecord
   belongs_to :creator, class_name: 'User'
   belongs_to :last_editor, class_name: 'User'

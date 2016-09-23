@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: varietals
+#
+#  id         :integer          not null, primary key
+#  name       :string           not null
+#  is_black   :boolean          not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Varietal < ApplicationRecord
   validates_presence_of :name
   validates_inclusion_of :is_black, in: [true, false]
