@@ -14,7 +14,8 @@ soda_data = {
           "caffeine"
         ],
         "is_caffeinated": true,
-        "is_diet": false
+        "is_diet": false,
+        "country": "USA"
       }, # /name
       "Coca-Cola Cherry": { #name
         "flavors": [
@@ -30,7 +31,8 @@ soda_data = {
           "caffeine"
         ],
         "is_caffeinated": true,
-        "is_diet": false
+        "is_diet": false,
+        "country": "USA"
       } #/name
     }, 
     "Barq's": { #brand 
@@ -52,7 +54,8 @@ soda_data = {
           "potassium chloride"
         ],
         "is_caffeinated": false,
-        "is_diet": true
+        "is_diet": true,
+        "country": "USA"
       },
       "Barq's": { #name
         "flavors": [
@@ -70,7 +73,8 @@ soda_data = {
           "acaia",
           ],
           "is_caffeinated": true,
-          "is_diet": false
+          "is_diet": false,
+          "country": "USA"
       } #/name
     } #/brand
   },
@@ -92,7 +96,8 @@ soda_data = {
           "red 40"
         ], 
         "is_caffeinated": null,
-        "is_diet": false
+        "is_diet": false,
+        "country": "USA"
       } /#name
     } #/brand
   }, #/parent-company
@@ -110,18 +115,34 @@ soda_data = {
             "organic lemon juice"
           ],
           "is_caffeinated": false,
-          "is_diet": false
+          "is_diet": false,
+          "country": "USA"
         } /#name
       }
     }
   } 
 } # /soda_data
 
-soda_data.each do | parent-company, brand | 
+soda_data.each do | parent_company, brand | 
   brand.each do | brand, name | 
+    flavs = []
+    ingreds = []
+    name.flavors.each do | flavor |
+      f = Flavor.find_or_create_by!({ name: flavor })
+      flavs << f
+    end
+    name.ingredients.each do |ingr|
+      i = Ingredient.find_or_create_by!({ name: ingr })
+      ingreds << i
     Soda.find_or_create_by!({ 
       name: name, 
-      brand: brand
+      brand: brand,
+      parent_company: parent_company,
+      is_diet: name.is_diet,
+      is_caffeinated: is_caffeinated,
+      flavors: flavs,
+      ingredients: ingreds,
+      country: Country.find_or_create_by!({ name: name.country })
     })
-  }
-}
+  end
+end

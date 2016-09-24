@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160923193142) do
+ActiveRecord::Schema.define(version: 20160924001732) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -144,10 +144,10 @@ ActiveRecord::Schema.define(version: 20160923193142) do
   end
 
   create_table "sodas", force: :cascade do |t|
-    t.integer  "user_id"
     t.integer  "country_id"
     t.string   "name"
     t.string   "brand"
+    t.string   "producer"
     t.string   "origin_data"
     t.boolean  "is_diet"
     t.boolean  "is_caffeinated"
@@ -156,10 +156,10 @@ ActiveRecord::Schema.define(version: 20160923193142) do
     t.integer  "last_editor_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.string   "parent_company"
     t.index ["country_id"], name: "index_sodas_on_country_id", using: :btree
     t.index ["creator_id"], name: "index_sodas_on_creator_id", using: :btree
     t.index ["last_editor_id"], name: "index_sodas_on_last_editor_id", using: :btree
-    t.index ["user_id"], name: "index_sodas_on_user_id", using: :btree
   end
 
   create_table "states", force: :cascade do |t|
@@ -242,7 +242,6 @@ ActiveRecord::Schema.define(version: 20160923193142) do
   add_foreign_key "reviews", "users"
   add_foreign_key "reviews", "wines"
   add_foreign_key "sodas", "countries"
-  add_foreign_key "sodas", "users"
   add_foreign_key "sodas", "users", column: "creator_id"
   add_foreign_key "sodas", "users", column: "last_editor_id"
   add_foreign_key "states", "countries"
