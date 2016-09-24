@@ -41,10 +41,10 @@ class Soda < ApplicationRecord
   before_save :downcase_hex
   
   # only allow 6 digit hex colors
-  validates :color, format: { with: /[a-f\d]{6}/i, message: "must be a hex number" }
+  validates :color, format: { with: /[a-f\d]{6}/i, message: "must be a hex number" }, :allow_nil => true
 
   def downcase_hex
-    return self.color.downcase!
+    return self.color.downcase! if color != nil
   end
 
 end

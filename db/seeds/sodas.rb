@@ -95,13 +95,12 @@ soda_data = {
           "acacia",
           "red 40"
         ], 
-        "is_caffeinated": null,
+        "is_caffeinated": nil,
         "is_diet": false,
         "country": "USA"
       } #/name
     } #/brand
   }, #/parent-company
-  {
     "Independently Owned": {
       "HOTLIPS": { #brand
         "Marionberry": {
@@ -119,31 +118,30 @@ soda_data = {
           "country": "USA"
         } #/name
       }
-    }
-  } 
+    } 
 } # /soda_data
 
-soda_data.each do | parent_company, brand | 
-  brand.each do | brand, name | 
-    flavs = []
-    ingreds = []
-    name.flavors.each do | flavor |
-      f = Flavor.find_or_create_by!({ name: flavor })
-      flavs << f
+soda_data.each do | parent_company, brands_data | 
+  brands_data.each do | brand, more_data | 
+    more_data.each do | name, data_hash |
+
+      soda = Soda.find_or_create_by!({ 
+        name: name, 
+        brand: brand,
+        color: nil,
+        parent_company: parent_company,
+        is_diet: data_hash[:is_diet],
+        is_caffeinated: data_hash[:is_caffeinated],
+        country: Country.find_or_create_by!({ name: data_hash[:country] })
+      })
+
+      data_hash[:flavors].each do | flavor |
+        soda.flavors.find_or_create_by!({ name: flavor })
+      end
+      data_hash[:ingredients].each do |ingr|
+        soda.ingredients.find_or_create_by!({ name: ingr })
+      end
+
     end
-    name.ingredients.each do |ingr|
-      i = Ingredient.find_or_create_by!({ name: ingr })
-      ingreds << i
-    end
-    Soda.find_or_create_by!({ 
-      name: name, 
-      brand: brand,
-      parent_company: parent_company,
-      is_diet: name.is_diet,
-      is_caffeinated: is_caffeinated,
-      flavors: flavs,
-      ingredients: ingreds,
-      country: Country.find_or_create_by!({ name: name.country })
-    })
   end
 end
