@@ -2,6 +2,7 @@
 
 soda_flavor_data = [
   "almond",
+  "anise",
   "apple",
   "apricot",
   "bacon",
@@ -37,6 +38,7 @@ soda_flavor_data = [
   "lemonade",
   "lemon-lime",
   "lemon verbena/herbia luisa",
+  "licorice",
   "lime",
   "lychee",
   "malt",
