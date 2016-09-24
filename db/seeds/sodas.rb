@@ -34,7 +34,7 @@ soda_data = {
         "is_diet": false,
         "country": "USA"
       } #/name
-    }, 
+    }, #/brand
     "Barq's": { #brand 
       "Diet Barq's": { #name
         "flavors": [
@@ -70,7 +70,7 @@ soda_data = {
           "citric acid", 
           "artificial flavors",
           "natural flavors",
-          "acaia",
+          "acaia"
           ],
           "is_caffeinated": true,
           "is_diet": false,
@@ -98,7 +98,7 @@ soda_data = {
         "is_caffeinated": null,
         "is_diet": false,
         "country": "USA"
-      } /#name
+      } #/name
     } #/brand
   }, #/parent-company
   {
@@ -117,7 +117,7 @@ soda_data = {
           "is_caffeinated": false,
           "is_diet": false,
           "country": "USA"
-        } /#name
+        } #/name
       }
     }
   } 
@@ -134,6 +134,7 @@ soda_data.each do | parent_company, brand |
     name.ingredients.each do |ingr|
       i = Ingredient.find_or_create_by!({ name: ingr })
       ingreds << i
+    end
     Soda.find_or_create_by!({ 
       name: name, 
       brand: brand,
