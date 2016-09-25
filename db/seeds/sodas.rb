@@ -122,17 +122,17 @@ soda_data = {
 } # /soda_data
 
 soda_data.each do | parent_company, brands_data | 
-  brands_data.each do | brand, more_data | 
-    more_data.each do | name, data_hash |
+  brands_data.each do | brand, name_data | 
+    name_data.each do | name, soda_data |
 
       soda = Soda.find_or_create_by!({ 
         name: name, 
         brand: brand,
         color: nil,
         parent_company: parent_company,
-        is_diet: data_hash[:is_diet],
-        is_caffeinated: data_hash[:is_caffeinated],
-        country: Country.find_or_create_by!({ name: data_hash[:country] })
+        is_diet: soda_data[:is_diet],
+        is_caffeinated: soda_data[:is_caffeinated],
+        country: Country.find_or_create_by!({ name: soda_data[:country] })
       })
 
       data_hash[:flavors].each do | flavor |
