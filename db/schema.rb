@@ -147,6 +147,7 @@ ActiveRecord::Schema.define(version: 20160924001732) do
     t.integer  "country_id"
     t.string   "name"
     t.string   "brand"
+    t.string   "parent_company"
     t.string   "origin_data"
     t.boolean  "is_diet"
     t.boolean  "is_caffeinated"
@@ -155,7 +156,6 @@ ActiveRecord::Schema.define(version: 20160924001732) do
     t.integer  "last_editor_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.string   "parent_company"
     t.index ["country_id"], name: "index_sodas_on_country_id", using: :btree
     t.index ["creator_id"], name: "index_sodas_on_creator_id", using: :btree
     t.index ["last_editor_id"], name: "index_sodas_on_last_editor_id", using: :btree

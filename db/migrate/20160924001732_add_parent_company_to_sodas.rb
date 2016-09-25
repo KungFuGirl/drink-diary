@@ -1,6 +1,5 @@
 class AddParentCompanyToSodas < ActiveRecord::Migration[5.0]
   def change
-    add_column :sodas, :parent_company, :string
-    remove_column :sodas, :producer
+    rename_column :sodas, :producer, :parent_company
   end
 end
