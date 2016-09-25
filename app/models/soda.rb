@@ -6,7 +6,6 @@
 #  country_id     :integer
 #  name           :string
 #  brand          :string
-#  producer       :string
 #  origin_data    :string
 #  is_diet        :boolean
 #  is_caffeinated :boolean

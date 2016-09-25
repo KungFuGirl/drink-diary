@@ -147,7 +147,6 @@ ActiveRecord::Schema.define(version: 20160924001732) do
     t.integer  "country_id"
     t.string   "name"
     t.string   "brand"
-    t.string   "producer"
     t.string   "origin_data"
     t.boolean  "is_diet"
     t.boolean  "is_caffeinated"

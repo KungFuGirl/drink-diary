@@ -132,13 +132,15 @@ soda_data.each do | parent_company, brands_data |
         parent_company: parent_company,
         is_diet: soda_data[:is_diet],
         is_caffeinated: soda_data[:is_caffeinated],
-        country: Country.find_or_create_by!({ name: soda_data[:country] })
+        country: Country.find_or_create_by!({ name: soda_data[:country] }),
+        creator: User.find_or_create_by!({ name: "Admin" }),
+        last_editor: User.find_or_create_by!({ name: "Admin" })
       })
 
-      data_hash[:flavors].each do | flavor |
+      soda_data[:flavors].each do | flavor |
         soda.flavors.find_or_create_by!({ name: flavor })
       end
-      data_hash[:ingredients].each do |ingr|
+      soda_data[:ingredients].each do |ingr|
         soda.ingredients.find_or_create_by!({ name: ingr })
       end
 

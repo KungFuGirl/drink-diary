@@ -9,4 +9,21 @@
 #*********************
 #   when creating record, please use find_or_create_by! or create! so that validations will fail!
 #*********************
-Dir[File.join(Rails.root, 'db', 'seeds', '*.rb')].sort.each { |seed| load seed }
+#Dir[File.join(Rails.root, 'db', 'seeds', '*.rb')].sort.each { |seed| load seed }
+
+seed_data = [ 
+  'countries',
+  'wine_types_seeds',
+  'usa',
+  'users',
+  'australia',
+  'france',
+  'italy',
+  'soda_flavors',
+  'sodas',
+  'wines_sample_data'
+]
+
+seed_data.each do |seed|
+  load File.join(Rails.root, 'db', 'seeds', "#{seed}.rb")
+end
