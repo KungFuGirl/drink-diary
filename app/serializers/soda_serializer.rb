@@ -1,5 +1,5 @@
 class SodaSerializer < ActiveModel::Serializer
-  attributes :id, :name, :color, :producer, :brand, :origin_data, :is_diet, :is_caffeinated
+  attributes :id, :name, :color, :parent_company, :brand, :origin_data, :is_diet, :is_caffeinated
 
   belongs_to :user, :key :creator
   belongs_to :user, :key :last_editor
