@@ -1,5 +1,12 @@
 # DRINK DIARY
 
+### Getting the app running
+- this app expects a global install of nokogiri and bundler
+- Pull down the app
+- run bundle install
+- create and seed the databases with rake db:rebuild (rails db reset is having some issues https://github.com/rails/rails/issues/23854)
+- run the app with `rails s --binding 0.0.0.0`
+
 ### What is “Drink Diary”?
 
 It’s an app that allows you to document your personal wine, whiskey or may be craft soda journey and helps you to discover your palate preferences. For those, who love to try new things, but never remembers what they have just tried. 
