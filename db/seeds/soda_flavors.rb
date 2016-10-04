@@ -44,6 +44,7 @@ soda_flavor_data = [
   "malt",
   "mandarin orange",
   "mango",
+  "marionberry",
   "mate",
   "melon",
   "mulberry",

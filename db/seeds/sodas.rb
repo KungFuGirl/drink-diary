@@ -137,12 +137,20 @@ soda_data.each do | parent_company, brands_data |
         last_editor: User.find_or_create_by!({ name: "Admin" })
       })
 
+      soda_flavors = []
+      soda_ingredients = []
+
       soda_data[:flavors].each do | flavor |
-        soda.flavors.find_or_create_by!({ name: flavor })
+        flavor = Flavor.find_or_create_by!({ name: flavor })
+        soda_flavors << flavor
       end
       soda_data[:ingredients].each do |ingr|
-        soda.ingredients.find_or_create_by!({ name: ingr })
+        ingredient = Ingredient.find_or_create_by!({ name: ingr })
+        soda_ingredients << ingredient
       end
+
+      soda.flavors = soda_flavors
+      soda.ingredients = soda_ingredients
 
     end
   end
